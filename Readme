@@ -1,1 +1,175 @@
+import numpy as np
 
+# 1
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(np.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+max_prime = 30
+prime_numbers = np.array([num for num in range(2, max_prime + 1) if is_prime(num)])
+
+print(prime_numbers)
+
+# 2
+matrix_size = (3, 3)
+
+# Функція для знаходження найближчого більшого парного числа
+def nearest_even(number):
+    return (number + 1) if (number + 1) % 2 == 0 else (number + 2)
+
+# Створіть двовимірний масив і заповніть його значеннями
+matrix = np.zeros(matrix_size, dtype=int)
+current_number = 1
+
+for i in range(matrix_size[0]):
+    for j in range(matrix_size[1]):
+        nearest_even_number = nearest_even(current_number)
+        matrix[i][j] = nearest_even_number ** 2
+        current_number += 1
+
+# Виведіть матрицю
+print(matrix)
+
+#3
+
+array = np.random.randint(-50, 50, (6, 6), int)
+
+array = array[array % 2 != 0]
+
+result = np.prod(array)
+
+print('Добуток:', result)
+
+#4
+array = np.random.randint(0, 1, (4, 4))
+
+max_in_each_column = np.max(array, axis=0)
+
+print(max_in_each_column)
+
+#5
+array1 = np.random.randint(-10, 10, 7)
+array2 = np.random.randint(-10, 10, 7)
+
+addition = np.add(array2,array1)
+mult = np.multiply(array2,array1)
+div = np.divide(array2,array1)
+subst = np.subtract(array2,array1)
+
+print(addition, mult, div, subst)
+
+#6
+vector1 = np.array([1, 2, 3, 4, 5, 6, 7])
+vector2 = np.array([7, 6, 5, 4, 3, 2, 1])
+
+scalar_product = np.dot(vector1, vector2)
+
+print("Скалярний добуток:", scalar_product)
+
+#7
+matrix1 = np.random.randint(1, 11, size=(4, 2))
+
+matrix2 = np.random.randint(1, 11, size=(2, 2))
+
+print("Перша матриця:")
+print(matrix1)
+
+print("\nДруга матриця:")
+print(matrix2)
+
+result_matrix = np.dot(matrix1, matrix2)
+
+print("\nРезультат перемноження матриць:")
+print(result_matrix)
+
+
+#8
+
+array8 = np.random.randint(1, 7, (2, 2))
+
+inverse_array8 = np.linalg.inv(array8)
+
+print(array8)
+
+#9
+
+array9 = np.random.randint(0, 1, (3, 5))
+
+transport_array9 = np.transpose(array9)
+
+print(transport_array9)
+
+#10
+
+array10 = np.random.rand(3, 4)
+array10_2 = np.random.randint(1, 10, 4)
+
+array10_result = np.dot(array10, array10_2)
+
+print(array10_result)
+
+#11
+
+matrix11 = np.random.rand(2, 3)
+
+print("Матриця:")
+print(matrix11)
+
+vector11 = np.random.rand(3)
+
+print("\nВектор:")
+print(vector11)
+
+result11 = np.sum(matrix11[matrix11 < vector11])
+
+print("\nСума елементів матриці, менших за відповідний елемент вектору:", result11)
+
+#12
+matrix12 = np.random.randint(1, 11, size=(8, 8))
+
+print("Перша матриця:")
+print(matrix12)
+
+first_column_diff = matrix12[:, 0] - matrix12[0, 0]
+
+print("\nРізниця елементів першого стовпця першої матриці:")
+print(first_column_diff)
+
+#13
+matrix1 = np.random.uniform(-1, 1, size=(7, 7))
+
+matrix2 = np.random.uniform(-1, 1, size=(7, 7))
+
+product = np.prod(matrix1) * np.prod(matrix2)
+
+print("Добуток елементів обох матриць:", product)
+
+#14
+matrix = np.random.uniform(-10, 10, size=(7, 7))
+
+print("Матриця:")
+print(matrix)
+
+mean_value = np.mean(matrix)
+
+greater_than_mean = matrix[matrix > mean_value]
+
+product = np.prod(greater_than_mean)
+print("\nДобуток елементів, більших за середнє арифметичне:", product)
+
+#15
+matrix = np.random.uniform(-0.5, 0.5, size=(9, 9))
+
+print("Матриця:")
+print(matrix)
+
+max_abs_indices = np.argmax(np.abs(matrix), axis=1)
+
+result_vector = matrix[np.arange(matrix.shape[0]), max_abs_indices]
+
+print("\nВектор-стовпчик з найбільшими за модулем значеннями в кожному рядку:")
+print(result_vector)
